@@ -3,28 +3,29 @@ import './App.css';
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet'
 import Landing from './Landing'
 
-
-const buildingTileSetId = "nycody.bx1az61y"
+const id = "nycody"
+const buildingTileSetId = "ckfg3dmge01ad19qjdll4l1v6"
 const subwayLineTileSetId = "nycody.0lumlaun"
 const accessToken = 'pk.eyJ1Ijoibnljb2R5IiwiYSI6ImNrZmcxZWFuejAzNWEydHIyMmw5eGIxaWwifQ.7p4RHp9R5RXRDe6YyktAnQ'
-const tileUrl = 'https://api.tiles.mapbox.com/v4/nycody/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoibnljb2R5IiwiYSI6ImNrZmcxZWFuejAzNWEydHIyMmw5eGIxaWwifQ.7p4RHp9R5RXRDe6YyktAnQ'
-const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
+// const tileUrl = `https://api.mapbox.com/styles/v1/{id}/{style_id}/tiles/256/{z}/{x}/{y}@2x?access_token={access_token}`
+// const testUrl = "https://api.mapbox.com/styles/v1/nycody/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoibnljb2R5IiwiYSI6ImNrZmcxZWFuejAzNWEydHIyMmw5eGIxaWwifQ.7p4RHp9R5RXRDe6YyktAnQ"
+const attribution = 'Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors, <a href=&quot;https://creativecommons.org/licenses/by-sa/2.0/&quot;>CC-BY-SA</a>, Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>'
 
-const api = 'https://api.mapbox.com/v4/nycody.bx1az61y/2/1/1.mvt?access_token=pk.eyJ1Ijoibnljb2R5IiwiYSI6ImNrZmcxZWFuejAzNWEydHIyMmw5eGIxaWwifQ.7p4RHp9R5RXRDe6YyktAnQ'
+
+
 // Map settings
 const maxZoom = 19
 
 class App extends React.Component{
   
   state= {
-    zoom: 10.47,
-    mapCenter: [-73.86, 40.73]
+    zoom: 11,
+    mapCenter: [40.736330, -73.868422]
   }
   
   render = () =>{
     return (
       <>
-        <Landing />
         <Map
         ref={m => { this.leafletMap = m }}
         id="mapid"
@@ -33,12 +34,13 @@ class App extends React.Component{
         maxZoom={maxZoom}
        >
         <TileLayer
+          url= {`https://api.mapbox.com/styles/v1/${id}/${buildingTileSetId}/tiles/256/{z}/{x}/{y}@2x?access_token=${accessToken}`}
           attribution={attribution}
-          url={tileUrl}
-          id={'mapbox.light'}
-          accessToken={accessToken}
+          // id={'mapbox.light'}
+          // accessToken={accessToken}
         />
       </Map>
+        {/* <Landing /> */}
 
       </>
     )
