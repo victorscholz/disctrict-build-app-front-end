@@ -24,7 +24,7 @@ class App extends React.Component{
   }
 
  style = () =>{
-   return 'mapbox://styles/nycody/ckfinrrjx16pj19l9v2sco4wk'
+   return 'mapbox://styles/nycody/ckfk3tjzs1xw719lv2yteuw6t'
  }
 
   componentDidMount() {
