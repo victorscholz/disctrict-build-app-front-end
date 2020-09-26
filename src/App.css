@@ -38,5 +38,28 @@
 }
 
 #mapid { 
-  height: 75vh; 
+  height: 100vh; 
 }
+
+.mapContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.sidebarStyle {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 25px;
+  background-color: #18516c;
+  color: #ffffff;
+  z-index: 1 !important;
+  padding: 16px;
+  font-weight: bold;
+  }
+
+
