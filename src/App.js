@@ -27,7 +27,7 @@ class App extends React.Component {
 
 	changeHandler = (e) => {
 		e.persist();
-		this.setState(()=>({ searchInput: e.target.value }))
+		this.setState(() => ({ searchInput: e.target.value }));
 	};
 
 	clickListener = () => {
