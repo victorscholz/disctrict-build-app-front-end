@@ -1,6 +1,3 @@
-// get more data to show - local file
-// splice hash attributes 
-
 
 import React from 'react';
 import './App.css';
@@ -28,8 +25,8 @@ class App extends React.Component{
   
   changeHandler = (e) =>{
     e.persist()
-    console.log(e.target.value)
-    // this.setState(()=>({ searchInput: e.target.value }))
+    // console.dir(e.target.value)
+    this.setState(()=>({ searchInput: e.target.value }))
   }
 
   clickListener = ()=>{
@@ -156,7 +153,7 @@ class App extends React.Component{
           <li>
             What ya look'n for?
           </li>
-          <input placeholder="Building Name" value={this.state.searchInput} onChange={()=>{this.changeHandler()}}></input>
+          <input placeholder="Building Name" value={this.state.searchInput} onChange={(e)=>{this.changeHandler(e)}}></input>
         </div>
         <div ref={el => this.mapContainer = el} className='mapContainer' />
         <Landing />
