@@ -82,8 +82,8 @@ class App extends React.Component {
 				type: "fill",
 				source: "buildings",
 				paint: {
-					"fill-color": "rgba(200, 100, 240, 0.4)",
-					"fill-outline-color": "rgba(200, 100, 240, 1)",
+					"fill-color": "rgba(159, 129, 64, 0.4)",
+					"fill-outline-color": "rgba(159, 129, 64, 1)",
 				},
 			});
 
