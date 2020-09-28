@@ -27,8 +27,7 @@ class App extends React.Component {
 
 	changeHandler = (e) => {
 		e.persist();
-		console.log(e.target.value);
-		// this.setState(()=>({ searchInput: e.target.value }))
+		this.setState(()=>({ searchInput: e.target.value }))
 	};
 
 	clickListener = () => {
@@ -166,8 +165,8 @@ class App extends React.Component {
 					<input
 						placeholder="Building Name"
 						value={this.state.searchInput}
-						onChange={() => {
-							this.changeHandler();
+						onChange={(e) => {
+							this.changeHandler(e);
 						}}
 					></input>
 				</div>
