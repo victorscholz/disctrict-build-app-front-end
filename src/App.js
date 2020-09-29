@@ -1,20 +1,11 @@
 // get more data to show - local file
 // splice hash attributes
-
+import Map from './Map'
 import React from "react";
 import "./App.css";
-import mapboxgl from "mapbox-gl";
-import Landing from "./Landing";
-import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
-import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
-
-mapboxgl.accessToken =
-	"pk.eyJ1Ijoibnljb2R5IiwiYSI6ImNrZmcxZWFuejAzNWEydHIyMmw5eGIxaWwifQ.7p4RHp9R5RXRDe6YyktAnQ";
-
-const buildingUrl =
-	"https://data.cityofnewyork.us/resource/x3ar-yjn2.json?borough=SI";
 
 class App extends React.Component {
+<<<<<<< HEAD
 	state = {
 		lat: 40.7,
 		lng: -73.96,
@@ -178,6 +169,14 @@ class App extends React.Component {
 			</>
 		);
 	};
+=======
+	
+	render = () =>{
+		return(
+			<Map />
+		)
+	}
+>>>>>>> mapRefactor
 }
 
 export default App;
