@@ -7,6 +7,20 @@ import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 mapboxgl.accessToken =
 	"pk.eyJ1Ijoibnljb2R5IiwiYSI6ImNrZmcxZWFuejAzNWEydHIyMmw5eGIxaWwifQ.7p4RHp9R5RXRDe6YyktAnQ";
 
+const renderVisitList = (
+	<>
+		<h3>Visit List</h3>
+		<ol>
+			<li>poop</li>
+			<li>caca</li>
+			<li>beef</li>
+			<li>Drake</li>
+		</ol>
+	</>
+);
+
+const districtBuildButton = <h3>DistrictBuild NYC</h3>;
+
 const buildingUrl =
 	"https://victorscholz.github.io/Data/building_database.geojson";
 
@@ -15,10 +29,11 @@ class Map extends React.Component {
 		lat: 40.7,
 		lng: -73.96,
 		zoom: 11,
-		maxZoom: 18,
-		minZoom: 10,
+		pitch: 1.5, // pitch in degrees
+		bearing: 28.81, // bearing in degrees
 		buildingsArray: [],
 		searchInput: "",
+		menuClicked: false,
 	};
 
 	changeHandler = (e) => {
@@ -44,8 +59,10 @@ class Map extends React.Component {
 			style: this.style(),
 			center: [this.state.lng, this.state.lat],
 			zoom: this.state.zoom,
-			maxZoom: this.state.maxZoom,
-			minZoom: this.state.minZoom,
+			maxZoom: 18,
+			minZoom: 10,
+			pitch: this.state.pitch,
+			bearing: this.state.bearing,
 		});
 
 		// Setting state to match user moving around the map
@@ -54,6 +71,8 @@ class Map extends React.Component {
 				lng: map.getCenter().lng.toFixed(4),
 				lat: map.getCenter().lat.toFixed(4),
 				zoom: map.getZoom().toFixed(2),
+				pitch: map.getPitch().toFixed(2),
+				bearing: map.getBearing().toFixed(2),
 			});
 		});
 
@@ -150,11 +169,25 @@ class Map extends React.Component {
 		map.addControl(new mapboxgl.NavigationControl());
 	}
 
+	changeMenuState = () => {
+		this.setState(() => ({ menuClicked: !this.state.menuClicked }));
+	};
+
 	render = () => {
+		console.log("the menu is clicked?:" + this.state.menuClicked);
 		return (
 			<>
-				<div className="sidebarStyle">
-					<h3>DistrictBuild NYC</h3>
+				<div
+					className={
+						this.state.menuClicked ? "visitList" : "sidebarStyle"
+					}
+					onClick={() => {
+						this.changeMenuState();
+					}}
+				>
+					{this.state.menuClicked
+						? renderVisitList
+						: districtBuildButton}
 				</div>
 				<div
 					ref={(el) => (this.mapContainer = el)}
