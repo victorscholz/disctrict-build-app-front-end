@@ -3,6 +3,9 @@ import "./App.css";
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import { Button } from '@material-ui/core';
+import Modal from '@material-ui/core/Modal';
+import SimpleModal from './SimpleModal'
 
 mapboxgl.accessToken =
 	"pk.eyJ1Ijoibnljb2R5IiwiYSI6ImNrZmcxZWFuejAzNWEydHIyMmw5eGIxaWwifQ.7p4RHp9R5RXRDe6YyktAnQ";
@@ -23,6 +26,10 @@ const districtBuildButton = <h3>DistrictBuild NYC</h3>;
 
 const buildingUrl =
 	"https://victorscholz.github.io/Data/building_database.geojson";
+
+const railsUrl = "http://localhost:3000/users/"
+// id = currentUser
+// railsUrl + ${id}
 
 class Map extends React.Component {
 	state = {
@@ -93,7 +100,7 @@ class Map extends React.Component {
 				type: "fill",
 				source: "buildings",
 				paint: {
-					"fill-color": "rgba(159, 129, 64, 0.4)",
+					"fill-color": "rgba(169, 169, 169, 0.4)",
 					"fill-outline-color": "rgba(159, 129, 64, 1)",
 				},
 			});
@@ -173,6 +180,14 @@ class Map extends React.Component {
 		this.setState(() => ({ menuClicked: !this.state.menuClicked }));
 	};
 
+	
+
+
+	
+
+
+
+
 	render = () => {
 		console.log("the menu is clicked?:" + this.state.menuClicked);
 		return (
@@ -193,6 +208,9 @@ class Map extends React.Component {
 					ref={(el) => (this.mapContainer = el)}
 					className="mapContainer"
 				/>
+
+						{/* Modal */}
+				<SimpleModal />
 			</>
 		);
 	};
