@@ -3,13 +3,12 @@ import React from "react";
 import "./App.css";
 import VisitList from "./VisitList";
 
-const railsUrl = "http://localhost:3000/visit_lists";
+const railsUrl = "http://localhost:3000/buildings/";
 // id = currentUser
 // railsUrl + ${id}
 
 class App extends React.Component {
 	state = {
-		// userArray: [],
 		visitListArray: [],
 		menuClicked: false,
 	};
@@ -25,9 +24,9 @@ class App extends React.Component {
 	changeMenuState = () => {
 		this.setState(() => ({ menuClicked: !this.state.menuClicked }));
 	};
-
+	/*
 	newUser = (e) => {
-		fetch("http://localhost:3000/visit_lists/", {
+		fetch(railsUrl, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -39,7 +38,7 @@ class App extends React.Component {
 			}),
 		});
 	};
-
+*/
 	addToVisitList = () => {
 		return console.log("Added to Visit List");
 	};
@@ -52,7 +51,10 @@ class App extends React.Component {
 					menuClicked={this.state.menuClicked}
 					visitListArray={this.state.visitListArray}
 				/>
-				<Map addToVisitList={this.addToVisitList} />
+				<Map
+					addToVisitList={this.addToVisitList}
+					// pass new visitList array into Map
+				/>
 			</>
 		);
 	};

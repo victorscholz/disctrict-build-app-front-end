@@ -65,14 +65,14 @@
   width: 200px;
   border-radius: 25px;
   text-align: center;
-  -moz-box-shadow:4px 4px 5px #1c1a1a6b;
-  -webkit-box-shadow:4px 4px 5px #1c1a1a6b;
-  box-shadow:4px 4px 5px #1c1a1a6b;
   transition: transform .2s; /* Animation */
 }
 
 .sidebarStyle:hover {
   transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  -moz-box-shadow:4px 4px 5px #1c1a1a6b;
+  -webkit-box-shadow:4px 4px 5px #1c1a1a6b;
+  box-shadow:4px 4px 5px #1c1a1a6b;
 }
 
   .mapboxgl-popup {
@@ -110,19 +110,24 @@
         z-index: 1 !important;
         padding: 10px;
         font-weight: bold;
-        max-height: 400px;
+        max-height: 75vh;
         height: relative;
         width: 200px;
         border-radius: 25px;
         text-align: center;
-        -moz-box-shadow:4px 4px 5px #000000;
-        -webkit-box-shadow:4px 4px 5px #000000;
-        box-shadow:4px 4px 5px #000000;
         transition: transform .2s; /* Animation */
+        overflow-x: hidden; 
+        overflow-y: auto; 
+        text-align:justify; 
       }
+
+    
 
       .visitList:hover {
         transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        -moz-box-shadow:4px 4px 5px #1c1a1a6b;
+        -webkit-box-shadow:4px 4px 5px #1c1a1a6b;
+        box-shadow:4px 4px 5px #1c1a1a6b;
       }
 
 .userTest {

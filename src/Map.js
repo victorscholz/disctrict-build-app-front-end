@@ -18,6 +18,7 @@ class Map extends React.Component {
 		pitch: 1.5, // pitch in degrees
 		bearing: 28.81, // bearing in degrees
 		searchInput: "",
+		// state of visitList
 	};
 
 	changeHandler = (e) => {
@@ -100,18 +101,35 @@ class Map extends React.Component {
 							e.features[0].properties.date_combo +
 							"<br><strong>Original Use: </strong></br>" +
 							e.features[0].properties.use_orig +
-							// '<br><strong>Secondary Material: </strong></br>' + e.features[0].properties.mat_sec +
 							"<br><strong>Borough: </strong></br>" +
 							e.features[0].properties.borough +
 							"<br><strong>Historical District: </strong></br>" +
 							e.features[0].properties.hist_dist +
 							"<br><strong>Address: </strong></br>" +
 							e.features[0].properties.des_addres +
-							`<br><button class="visit-button" onClick='{ }'</button>Add to Visit List</button></br>`
+							`<onClick=${this.addViewHistory(
+								e.features[0].properties
+							)}>`
 					)
 					.addTo(map);
-				console.log(e.features[0].properties);
+				// console.log(e.features[0].properties);
+				// logs each building that's clicked
 			});
+
+			this.addViewHistory = (buildingObj) => {
+				// e.preventDefault();
+				console.log(buildingObj);
+				fetch("http://localhost:3000/buildings", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Accept: "application/json",
+					},
+					body: JSON.stringify({ building: buildingObj }),
+				})
+					.then((response) => response.json())
+					.then((data) => console.log(data));
+			};
 
 			// Change the cursor to a pointer when the mouse is over the buildings layer.
 			map.on("mouseenter", "nycody.bx1az61y", function () {
