@@ -3,33 +3,12 @@ import "./App.css";
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
-import { Button } from '@material-ui/core';
-import Modal from '@material-ui/core/Modal';
-import SimpleModal from './SimpleModal'
 
 mapboxgl.accessToken =
 	"pk.eyJ1Ijoibnljb2R5IiwiYSI6ImNrZmcxZWFuejAzNWEydHIyMmw5eGIxaWwifQ.7p4RHp9R5RXRDe6YyktAnQ";
 
-const renderVisitList = (
-	<>
-		<h3>Visit List</h3>
-		<ol>
-			<li>poop</li>
-			<li>caca</li>
-			<li>beef</li>
-			<li>Drake</li>
-		</ol>
-	</>
-);
-
-const districtBuildButton = <h3>DistrictBuild NYC</h3>;
-
 const buildingUrl =
 	"https://victorscholz.github.io/Data/building_database.geojson";
-
-const railsUrl = "http://localhost:3000/users/"
-// id = currentUser
-// railsUrl + ${id}
 
 class Map extends React.Component {
 	state = {
@@ -38,9 +17,7 @@ class Map extends React.Component {
 		zoom: 11,
 		pitch: 1.5, // pitch in degrees
 		bearing: 28.81, // bearing in degrees
-		buildingsArray: [],
 		searchInput: "",
-		menuClicked: false,
 	};
 
 	changeHandler = (e) => {
@@ -57,10 +34,6 @@ class Map extends React.Component {
 	};
 
 	componentDidMount() {
-		fetch(buildingUrl)
-			.then((resp) => resp.json())
-			.then((data) => this.setState(() => ({ buildingsArray: data })));
-
 		const map = new mapboxgl.Map({
 			container: this.mapContainer,
 			style: this.style(),
@@ -83,7 +56,7 @@ class Map extends React.Component {
 			});
 		});
 
-		/////////// Trying to add polygons over buildings
+		// Add polygons over buildings
 
 		map.on("load", function () {
 			// Add a source for the state polygons.
@@ -100,8 +73,8 @@ class Map extends React.Component {
 				type: "fill",
 				source: "buildings",
 				paint: {
-					"fill-color": "rgba(169, 169, 169, 0.4)",
-					"fill-outline-color": "rgba(159, 129, 64, 1)",
+					"fill-color": "rgba(31, 146, 239, 0.4)",
+					"fill-outline-color": "rgba(145, 145, 145, 1)",
 				},
 			});
 
@@ -134,8 +107,7 @@ class Map extends React.Component {
 							e.features[0].properties.hist_dist +
 							"<br><strong>Address: </strong></br>" +
 							e.features[0].properties.des_addres +
-							`<br><button class="visit-button";
-                        }}'>Add to visit list</button></br>`
+							`<br><button class="visit-button" onClick='{ }'</button>Add to Visit List</button></br>`
 					)
 					.addTo(map);
 				console.log(e.features[0].properties);
@@ -176,41 +148,14 @@ class Map extends React.Component {
 		map.addControl(new mapboxgl.NavigationControl());
 	}
 
-	changeMenuState = () => {
-		this.setState(() => ({ menuClicked: !this.state.menuClicked }));
-	};
-
-	
-
-
-	
-
-
-
-
 	render = () => {
-		console.log("the menu is clicked?:" + this.state.menuClicked);
+		// console.log("the menu is clicked?:" + this.state.menuClicked);
 		return (
 			<>
-				<div
-					className={
-						this.state.menuClicked ? "visitList" : "sidebarStyle"
-					}
-					onClick={() => {
-						this.changeMenuState();
-					}}
-				>
-					{this.state.menuClicked
-						? renderVisitList
-						: districtBuildButton}
-				</div>
 				<div
 					ref={(el) => (this.mapContainer = el)}
 					className="mapContainer"
 				/>
-
-						{/* Modal */}
-				<SimpleModal />
 			</>
 		);
 	};
