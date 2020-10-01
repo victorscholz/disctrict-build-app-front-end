@@ -3,6 +3,9 @@ import "./App.css";
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import VisitList from "./VisitList";
+
+const railsUrl = "http://localhost:3000/buildings/";
 
 mapboxgl.accessToken =
 	"pk.eyJ1Ijoibnljb2R5IiwiYSI6ImNrZmcxZWFuejAzNWEydHIyMmw5eGIxaWwifQ.7p4RHp9R5RXRDe6YyktAnQ";
@@ -18,7 +21,9 @@ class Map extends React.Component {
 		pitch: 1.5, // pitch in degrees
 		bearing: 28.81, // bearing in degrees
 		searchInput: "",
-		// state of visitList
+		menuClicked: false,
+		visitListArray: [],
+		// buildingObj: {},
 	};
 
 	changeHandler = (e) => {
@@ -26,15 +31,29 @@ class Map extends React.Component {
 		this.setState(() => ({ searchInput: e.target.value }));
 	};
 
-	clickHandler = (e) => {
-		return console.log("been clicked");
+	changeMenuState = () => {
+		this.setState(() => ({ menuClicked: !this.state.menuClicked }));
 	};
 
 	style = () => {
 		return "mapbox://styles/nycody/ckfmxz8ee088d19ogaf86esjm";
 	};
 
+	onClickThing = (e) => {
+		console.log("hello");
+		// {this.addViewHistory(e.features[0].properties)}
+	};
+
+	// setStateForBuilding = (e) => {
+	// 	this.setState({buildingObj: e.features[0].properties})
+	// this.addViewHistory(this.state.buildingObj);
+	// }
+
 	componentDidMount() {
+		fetch(railsUrl)
+			.then((resp) => resp.json())
+			.then((data) => this.setState(() => ({ visitListArray: data })));
+
 		const map = new mapboxgl.Map({
 			container: this.mapContainer,
 			style: this.style(),
@@ -47,19 +66,19 @@ class Map extends React.Component {
 		});
 
 		// Setting state to match user moving around the map
-		map.on("move", () => {
-			this.setState({
-				lng: map.getCenter().lng.toFixed(4),
-				lat: map.getCenter().lat.toFixed(4),
-				zoom: map.getZoom().toFixed(2),
-				pitch: map.getPitch().toFixed(2),
-				bearing: map.getBearing().toFixed(2),
-			});
-		});
+		// map.on("move", () => {
+		// 	this.setState({
+		// 		lng: map.getCenter().lng.toFixed(4),
+		// 		lat: map.getCenter().lat.toFixed(4),
+		// 		zoom: map.getZoom().toFixed(2),
+		// 		pitch: map.getPitch().toFixed(2),
+		// 		bearing: map.getBearing().toFixed(2),
+		// 	});
+		// });
 
 		// Add polygons over buildings
 
-		map.on("load", function () {
+		map.on("load", () => {
 			// Add a source for the state polygons.
 			map.addSource("buildings", {
 				type: "geojson",
@@ -79,8 +98,51 @@ class Map extends React.Component {
 				},
 			});
 
+			// addViewHistory = (buildingObj) => {
+			// 	// e.preventDefault();
+			// 	console.log(buildingObj);
+			// 	fetch("http://localhost:3000/buildings", {
+			// 		method: "POST",
+			// 		headers: {
+			// 			"Content-Type": "application/json",
+			// 			Accept: "application/json",
+			// 		},
+			// 		body: JSON.stringify({ building: buildingObj }),
+			// 	})
+			// 		.then((response) => response.json())
+			// 		.then((data) => {
+			// 		});
+			// 		debugger;
+			// 	// this.setState({visitListArray: [data, ...this.state.visitListArray]}));
+			// };
+
+			map.on("click", "nycody.bx1az61y", (e) => {
+				// (e.features[0].properties);
+				fetch("http://localhost:3000/buildings", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Accept: "application/json",
+					},
+					body: JSON.stringify({
+						building: e.features[0].properties,
+					}),
+				})
+					.then((response) => response.json())
+					.then((data) =>
+						this.setState({
+							visitListArray: [
+								data,
+								...this.state.visitListArray,
+							],
+						})
+					);
+			});
+
 			// When a click event occurs on a feature in the buildings layer, open a popup at the
 			// location of the click, with description HTML from its properties.
+
+			// await fetch requests
 			map.on("click", "nycody.bx1az61y", function (e) {
 				new mapboxgl.Popup()
 					.setLngLat(e.lngLat)
@@ -106,30 +168,17 @@ class Map extends React.Component {
 							"<br><strong>Historical District: </strong></br>" +
 							e.features[0].properties.hist_dist +
 							"<br><strong>Address: </strong></br>" +
-							e.features[0].properties.des_addres +
-							`<onClick=${this.addViewHistory(
-								e.features[0].properties
-							)}>`
+							e.features[0].properties.des_addres
 					)
 					.addTo(map);
 				// console.log(e.features[0].properties);
 				// logs each building that's clicked
 			});
 
-			this.addViewHistory = (buildingObj) => {
-				// e.preventDefault();
-				console.log(buildingObj);
-				fetch("http://localhost:3000/buildings", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-						Accept: "application/json",
-					},
-					body: JSON.stringify({ building: buildingObj }),
-				})
-					.then((response) => response.json())
-					.then((data) => console.log(data));
-			};
+			map.on("click", "nycody.bx1az61y", (e) => {
+				// this.setStateForBuilding(e)
+				// this.addViewHistory(e)
+			});
 
 			// Change the cursor to a pointer when the mouse is over the buildings layer.
 			map.on("mouseenter", "nycody.bx1az61y", function () {
@@ -167,12 +216,19 @@ class Map extends React.Component {
 	}
 
 	render = () => {
-		// console.log("the menu is clicked?:" + this.state.menuClicked);
+		console.log(this.state.visitListArray);
+
 		return (
 			<>
+				{/* {this.addViewHistory()} */}
 				<div
 					ref={(el) => (this.mapContainer = el)}
 					className="mapContainer"
+				/>
+				<VisitList
+					changeMenuState={this.changeMenuState}
+					menuClicked={this.state.menuClicked}
+					visitListArray={this.state.visitListArray}
 				/>
 			</>
 		);

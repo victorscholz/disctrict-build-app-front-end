@@ -6,7 +6,7 @@ function VisitListCard(props) {
 			<div className="visitListCard">
 				<h2 align="center">
 					{props.building.build_nme === "0"
-						? "Building"
+						? "Landmark"
 						: props.building.build_nme}{" "}
 				</h2>
 				<p>Borough: {props.building.borough}</p>
