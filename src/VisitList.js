@@ -5,18 +5,23 @@ function VisitList(props) {
 	const districtBuildButton = <h2>DistrictBuild NYC</h2>;
 
 	const visitListCards = props.visitListArray.map((building) => (
-		// function can't iterate through nested data
-		// works for non nested data
-		// find a way to map through content arrays
-		<VisitListCard key={building.id} building={building} />
+		<VisitListCard
+			key={building.id}
+			building={building}
+			deleteBuilding={props.deleteBuilding}
+		/>
 	));
 
 	return (
 		<div
+			onMouseEnter={props.changeMenuState}
+			onMouseLeave={props.changeMenuState}
 			className={props.menuClicked ? "visitList" : "sidebarStyle"}
-			onClick={props.changeMenuState}
 		>
-			{props.menuClicked ? visitListCards : districtBuildButton}
+			{props.menuClicked ? "View History" : null}
+			<div>
+				{props.menuClicked ? visitListCards : districtBuildButton}
+			</div>
 		</div>
 	);
 }

@@ -23,7 +23,6 @@ class Map extends React.Component {
 		searchInput: "",
 		menuClicked: false,
 		visitListArray: [],
-		// buildingObj: {},
 	};
 
 	changeHandler = (e) => {
@@ -38,16 +37,6 @@ class Map extends React.Component {
 	style = () => {
 		return "mapbox://styles/nycody/ckfmxz8ee088d19ogaf86esjm";
 	};
-
-	onClickThing = (e) => {
-		console.log("hello");
-		// {this.addViewHistory(e.features[0].properties)}
-	};
-
-	// setStateForBuilding = (e) => {
-	// 	this.setState({buildingObj: e.features[0].properties})
-	// this.addViewHistory(this.state.buildingObj);
-	// }
 
 	componentDidMount() {
 		fetch(railsUrl)
@@ -97,24 +86,6 @@ class Map extends React.Component {
 					"fill-outline-color": "rgba(145, 145, 145, 1)",
 				},
 			});
-
-			// addViewHistory = (buildingObj) => {
-			// 	// e.preventDefault();
-			// 	console.log(buildingObj);
-			// 	fetch("http://localhost:3000/buildings", {
-			// 		method: "POST",
-			// 		headers: {
-			// 			"Content-Type": "application/json",
-			// 			Accept: "application/json",
-			// 		},
-			// 		body: JSON.stringify({ building: buildingObj }),
-			// 	})
-			// 		.then((response) => response.json())
-			// 		.then((data) => {
-			// 		});
-			// 		debugger;
-			// 	// this.setState({visitListArray: [data, ...this.state.visitListArray]}));
-			// };
 
 			map.on("click", "nycody.bx1az61y", (e) => {
 				// (e.features[0].properties);
@@ -215,12 +186,29 @@ class Map extends React.Component {
 		map.addControl(new mapboxgl.NavigationControl());
 	}
 
-	render = () => {
-		console.log(this.state.visitListArray);
+	deleteBuilding = (buildingObj) => {
+		fetch(`http://localhost:3000/buildings/${buildingObj.id}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify({ building: buildingObj }),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				const updatedArray = this.state.visitListArray.filter(
+					(currentObj) => buildingObj.id !== currentObj.id
+				);
+				this.setState({
+					visitListArray: updatedArray,
+				});
+			});
+	};
 
+	render = () => {
 		return (
 			<>
-				{/* {this.addViewHistory()} */}
 				<div
 					ref={(el) => (this.mapContainer = el)}
 					className="mapContainer"
@@ -229,6 +217,7 @@ class Map extends React.Component {
 					changeMenuState={this.changeMenuState}
 					menuClicked={this.state.menuClicked}
 					visitListArray={this.state.visitListArray}
+					deleteBuilding={this.deleteBuilding}
 				/>
 			</>
 		);

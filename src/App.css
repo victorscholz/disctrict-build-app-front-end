@@ -37,10 +37,6 @@
   }
 }
 
-/* #mapid { 
-  height: 75px; 
-} */
-
 .mapContainer {
   position: absolute;
   height: 100vh;
@@ -51,7 +47,8 @@
 }
 
 .sidebarStyle {
-  display: inline-block;
+  font-family: 'Squada One', cursive;  display: inline-block;
+  letter-spacing: 1.5px;
   position: absolute;
   top: 0;
   left: 0;
@@ -93,11 +90,11 @@
       font-size: larger;
       }
 
-      .visit-button{
+      /* .visit-button{
         background-color: #3b88ab;
         border-radius: 25px;
         color: #ffffff;
-      }
+      } */
 
       .visitList{
         display: inline-block;
@@ -109,10 +106,9 @@
         color: #ffffff;
         z-index: 1 !important;
         padding: 10px;
-        font-weight: bold;
         max-height: 75vh;
         height: relative;
-        width: 200px;
+        width: 250px;
         border-radius: 25px;
         text-align: center;
         transition: transform .2s; /* Animation */
@@ -121,8 +117,6 @@
         text-align:justify; 
       }
 
-    
-
       .visitList:hover {
         transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
         -moz-box-shadow:4px 4px 5px #1c1a1a6b;
@@ -130,7 +124,13 @@
         box-shadow:4px 4px 5px #1c1a1a6b;
       }
 
-.userTest {
-  top: 400px
-}
-      
+      .delete-button{
+        background-color: #3b88ab;
+        border-radius: 7px;
+        color: #ffffff;
+      }
+
+      .vlCard-title{
+        font-family: 'Squada One', cursive;
+        align-content: center;
+      }
