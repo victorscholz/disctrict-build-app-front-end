@@ -19,6 +19,7 @@ function VisitList(props) {
 			className={props.historyClicked ? "visitList" : "sidebarStyle"}
 		>
 			{props.historyClicked ? <strong>View History</strong>: null}
+
 			<div>
 				{props.historyClicked ? visitListCards : districtBuildButton}
 			</div>

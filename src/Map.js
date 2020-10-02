@@ -26,6 +26,7 @@ class Map extends React.Component {
 		visitListArray: [],
 		loginClicked: false,
 		loginValue: "",
+		passwordValue: ""
 	};
 
 	changeHandler = (e) => {
@@ -40,6 +41,8 @@ class Map extends React.Component {
 	changeLoginState = () => {
 		this.setState(() => ({ loginClicked: !this.state.loginClicked }));
 	};
+
+	
 
 	style = () => {
 		return "mapbox://styles/nycody/ckfmxz8ee088d19ogaf86esjm";
@@ -215,7 +218,15 @@ class Map extends React.Component {
 		this.setState(()=>({ loginValue: e.target.value }))
 	};
 
+	passwordHandler = (e) => {
+		e.persist()
+		this.setState(()=>({ passwordValue: e.target.value }))
+	};
 	
+	formReset = () => {
+		this.setState( { loginValue: "", passwordValue: "" } )
+	}
+
 
 	render = () => {
 		return (
@@ -230,12 +241,15 @@ class Map extends React.Component {
 					visitListArray={this.state.visitListArray}
 					deleteBuilding={this.deleteBuilding}
 				/>
+
 				<Login
 					changeLoginState={this.changeLoginState}
 					loginClicked={this.state.loginClicked}
 					loginValue={this.state.loginValue}
 					loginHandler={this.loginHandler}
-					// submitHandler={this.submitHandler}
+					passwordHandler={this.passwordHandler}
+					passwordValue={this.state.passwordValue}
+					formReset={this.formReset}
 				/>
 			</>
 		);
