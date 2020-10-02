@@ -1,136 +1,196 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+	height: 40vmin;
+	pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .mapContainer {
-  position: absolute;
-  height: 100vh;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+	position: absolute;
+	height: 100vh;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
 }
 
 .sidebarStyle {
-  font-family: 'Squada One', cursive;  display: inline-block;
-  letter-spacing: 1.5px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 25px;
-  background-color: #3b88ab;
-  color: #ffffff;
-  z-index: 1 !important;
-  padding: 10px;
-  font-weight: bold;
-  height: relative;
-  width: 200px;
-  border-radius: 25px;
-  text-align: center;
-  transition: transform .2s; /* Animation */
+	font-family: "Squada One", cursive;
+	display: inline-block;
+	letter-spacing: 1.5px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 25px;
+	background-color: #3b88ab;
+	color: #ffffff;
+	z-index: 1 !important;
+	padding: 10px;
+	font-weight: bold;
+	height: relative;
+	width: 200px;
+	border-radius: 25px;
+	text-align: center;
+	transition: transform 0.2s; /* Animation */
 }
 
 .sidebarStyle:hover {
-  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-  -moz-box-shadow:4px 4px 5px #1c1a1a6b;
-  -webkit-box-shadow:4px 4px 5px #1c1a1a6b;
-  box-shadow:4px 4px 5px #1c1a1a6b;
+	transform: scale(
+		1
+	); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+	-moz-box-shadow: 4px 4px 5px #1c1a1a6b;
+	-webkit-box-shadow: 4px 4px 5px #1c1a1a6b;
+	box-shadow: 4px 4px 5px #1c1a1a6b;
 }
 
-  .mapboxgl-popup {
-    max-width: relative;
-    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    }
+.mapboxgl-popup {
+	max-width: relative;
+	font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
 
+.geocoder-dropdown-item {
+	padding: 5px;
+}
+.geocoder-dropdown-icon {
+	margin-right: 10px;
+}
+.geocoder-dropdown-text {
+	color: #5a3fc0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: larger;
+}
 
-    .geocoder-dropdown-item {
-      padding: 5px;
-      }
-      .geocoder-dropdown-icon {
-      margin-right: 10px;
-      }
-      .geocoder-dropdown-text {
-      color: #5a3fc0;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: larger;
-      }
-
-      /* .visit-button{
+/* .visit-button{
         background-color: #3b88ab;
         border-radius: 25px;
         color: #ffffff;
       } */
 
-      .visitList{
-        display: inline-block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 25px;
-        background-color: rgb(205, 135, 89);
-        color: #ffffff;
-        z-index: 1 !important;
-        padding: 10px;
-        max-height: 75vh;
-        height: relative;
-        width: 250px;
-        border-radius: 25px;
-        text-align: center;
-        transition: transform .2s; /* Animation */
-        overflow-x: hidden; 
-        overflow-y: auto; 
-        text-align:justify; 
-      }
+.visitList {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 25px;
+	background-color: rgb(205, 135, 89);
+	color: #ffffff;
+	z-index: 1 !important;
+	padding: 10px;
+	max-height: 75vh;
+	height: relative;
+	width: 200px;
+	border-radius: 25px;
+	text-align: center;
+	transition: transform 0.2s; /* Animation */
+	overflow-x: hidden;
+	overflow-y: auto;
+	text-align: justify;
+}
 
-      .visitList:hover {
-        transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-        -moz-box-shadow:4px 4px 5px #1c1a1a6b;
-        -webkit-box-shadow:4px 4px 5px #1c1a1a6b;
-        box-shadow:4px 4px 5px #1c1a1a6b;
-      }
+.visitList:hover {
+	transform: scale(1);
+	/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+	-moz-box-shadow: 4px 4px 5px #1c1a1a6b;
+	-webkit-box-shadow: 4px 4px 5px #1c1a1a6b;
+	box-shadow: 4px 4px 5px #1c1a1a6b;
+}
 
-      .delete-button{
-        background-color: #3b88ab;
-        border-radius: 7px;
-        color: #ffffff;
-      }
+.delete-button {
+	background-color: #3b88ab;
+	border-radius: 7px;
+	color: #ffffff;
+}
 
-      .vlCard-title{
-        font-family: 'Squada One', cursive;
-        align-content: center;
-      }
+.vlCard-title {
+	font-family: "Squada One";
+	align-content: center;
+}
+
+.login-button {
+	font-family: "Squada One", cursive;
+	display: inline-block;
+	letter-spacing: 1.5px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 250px;
+	background-color: rgb(205, 135, 89);
+	color: #ffffff;
+	z-index: 1 !important;
+	padding: 8px;
+	font-weight: bold;
+	height: relative;
+	width: 200px;
+	border-radius: 25px;
+	text-align: center;
+	transition: transform 0.2s; /* Animation */
+}
+
+.login-button:hover {
+	transform: scale(
+		1
+	); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+	-moz-box-shadow: 4px 4px 5px #1c1a1a6b;
+	-webkit-box-shadow: 4px 4px 5px #1c1a1a6b;
+	box-shadow: 4px 4px 5px #1c1a1a6b;
+}
+
+.login-form {
+	font-family: "Squada One";
+	display: inline-block;
+	letter-spacing: 1.5px;
+	/* background: transparent;   */
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 250px;
+	background-color: #3b88ab;
+	color: #ffffff;
+	z-index: 1 !important;
+	padding: 8px;
+	height: relative;
+	width: 215px;
+	border-radius: 25px;
+	text-align: center;
+	transition: transform 0.2s; /* Animation */
+}
+.login-form:hover {
+	transform: scale(
+		1
+	); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+	-moz-box-shadow: 4px 4px 5px #1c1a1a6b;
+	-webkit-box-shadow: 4px 4px 5px #1c1a1a6b;
+	box-shadow: 4px 4px 5px #1c1a1a6b;
+}

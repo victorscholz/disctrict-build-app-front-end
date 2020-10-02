@@ -4,6 +4,7 @@ import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import VisitList from "./VisitList";
+import Login from "./Login";
 
 const railsUrl = "http://localhost:3000/buildings/";
 
@@ -21,8 +22,10 @@ class Map extends React.Component {
 		pitch: 1.5, // pitch in degrees
 		bearing: 28.81, // bearing in degrees
 		searchInput: "",
-		menuClicked: false,
+		historyClicked: false,
 		visitListArray: [],
+		loginClicked: false,
+		loginValue: "",
 	};
 
 	changeHandler = (e) => {
@@ -30,8 +33,12 @@ class Map extends React.Component {
 		this.setState(() => ({ searchInput: e.target.value }));
 	};
 
-	changeMenuState = () => {
-		this.setState(() => ({ menuClicked: !this.state.menuClicked }));
+	changeHistoryState = () => {
+		this.setState(() => ({ historyClicked: !this.state.historyClicked }));
+	};
+
+	changeLoginState = () => {
+		this.setState(() => ({ loginClicked: !this.state.loginClicked }));
 	};
 
 	style = () => {
@@ -118,7 +125,9 @@ class Map extends React.Component {
 				new mapboxgl.Popup()
 					.setLngLat(e.lngLat)
 					.setHTML(
-						"<strong>Developer: </strong>" +
+						"<strong>Building/Landmark Name: </strong><br>" +
+							e.features[0].properties.build_nme +
+							"<br><strong>Developer: </strong></br>" +
 							e.features[0].properties.own_devel +
 							"<br><strong>Build Type: </strong></br>" +
 							e.features[0].properties.build_type +
@@ -144,11 +153,6 @@ class Map extends React.Component {
 					.addTo(map);
 				// console.log(e.features[0].properties);
 				// logs each building that's clicked
-			});
-
-			map.on("click", "nycody.bx1az61y", (e) => {
-				// this.setStateForBuilding(e)
-				// this.addViewHistory(e)
 			});
 
 			// Change the cursor to a pointer when the mouse is over the buildings layer.
@@ -206,6 +210,13 @@ class Map extends React.Component {
 			});
 	};
 
+	loginHandler = (e) => {
+		e.persist()
+		this.setState(()=>({ loginValue: e.target.value }))
+	};
+
+	
+
 	render = () => {
 		return (
 			<>
@@ -214,10 +225,17 @@ class Map extends React.Component {
 					className="mapContainer"
 				/>
 				<VisitList
-					changeMenuState={this.changeMenuState}
-					menuClicked={this.state.menuClicked}
+					changeHistoryState={this.changeHistoryState}
+					historyClicked={this.state.historyClicked}
 					visitListArray={this.state.visitListArray}
 					deleteBuilding={this.deleteBuilding}
+				/>
+				<Login
+					changeLoginState={this.changeLoginState}
+					loginClicked={this.state.loginClicked}
+					loginValue={this.state.loginValue}
+					loginHandler={this.loginHandler}
+					// submitHandler={this.submitHandler}
 				/>
 			</>
 		);

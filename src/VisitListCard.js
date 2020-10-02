@@ -1,7 +1,6 @@
 import React from "react";
 
 function VisitListCard(props) {
-	// {debugger}
 	return (
 		<>
 			<div className="visitListCard">
@@ -11,19 +10,23 @@ function VisitListCard(props) {
 						: props.building.build_nme}{" "}
 				</h3>
 				<p>
-					<strong>Borough: </strong> {props.building.borough}
+					<strong>Borough: </strong><br></br>
+					{props.building.borough}
 				</p>
 				<p>
-					<strong>Address: </strong> {props.building.des_addres}
+					<strong>Address: </strong><br></br>
+					{props.building.des_addres}
 				</p>
 				<p>
-					<strong>Original Use: </strong> {props.building.use_orig}
+					<strong>Original Use: </strong><br></br>
+					{props.building.use_orig}
 				</p>
 				<p>
-					<strong>Build Date: </strong> {props.building.date_combo}
+					<strong>Build Date: </strong><br></br>
+					{props.building.date_combo}
 				</p>
 				<p>
-					<strong>District: </strong>
+					<strong>District: </strong><br></br>
 					{props.building.hist_dist}
 				</p>
 				<p>

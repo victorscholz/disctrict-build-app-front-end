@@ -14,13 +14,13 @@ function VisitList(props) {
 
 	return (
 		<div
-			onMouseEnter={props.changeMenuState}
-			onMouseLeave={props.changeMenuState}
-			className={props.menuClicked ? "visitList" : "sidebarStyle"}
+			onMouseEnter={props.changeHistoryState}
+			onMouseLeave={props.changeHistoryState}
+			className={props.historyClicked ? "visitList" : "sidebarStyle"}
 		>
-			{props.menuClicked ? "View History" : null}
+			{props.historyClicked ? <strong>View History</strong>: null}
 			<div>
-				{props.menuClicked ? visitListCards : districtBuildButton}
+				{props.historyClicked ? visitListCards : districtBuildButton}
 			</div>
 		</div>
 	);
