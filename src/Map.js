@@ -26,7 +26,7 @@ class Map extends React.Component {
 		visitListArray: [],
 		loginClicked: false,
 		loginValue: "",
-		passwordValue: ""
+		passwordValue: "",
 	};
 
 	changeHandler = (e) => {
@@ -41,8 +41,6 @@ class Map extends React.Component {
 	changeLoginState = () => {
 		this.setState(() => ({ loginClicked: !this.state.loginClicked }));
 	};
-
-	
 
 	style = () => {
 		return "mapbox://styles/nycody/ckfmxz8ee088d19ogaf86esjm";
@@ -112,10 +110,7 @@ class Map extends React.Component {
 					.then((response) => response.json())
 					.then((data) =>
 						this.setState({
-							visitListArray: [
-								data,
-								...this.state.visitListArray,
-							],
+							visitListArray: [data, ...this.state.visitListArray],
 						})
 					);
 			});
@@ -214,27 +209,23 @@ class Map extends React.Component {
 	};
 
 	loginHandler = (e) => {
-		e.persist()
-		this.setState(()=>({ loginValue: e.target.value }))
+		e.persist();
+		this.setState(() => ({ loginValue: e.target.value }));
 	};
 
 	passwordHandler = (e) => {
-		e.persist()
-		this.setState(()=>({ passwordValue: e.target.value }))
+		e.persist();
+		this.setState(() => ({ passwordValue: e.target.value }));
 	};
-	
-	formReset = () => {
-		this.setState( { loginValue: "", passwordValue: "" } )
-	}
 
+	formReset = () => {
+		this.setState({ loginValue: "", passwordValue: "" });
+	};
 
 	render = () => {
 		return (
 			<>
-				<div
-					ref={(el) => (this.mapContainer = el)}
-					className="mapContainer"
-				/>
+				<div ref={(el) => (this.mapContainer = el)} className="mapContainer" />
 				<VisitList
 					changeHistoryState={this.changeHistoryState}
 					historyClicked={this.state.historyClicked}

@@ -45,7 +45,7 @@ function Login(props) {
 						onChange={props.loginHandler}
 					></input>
 					<input
-						type="text"
+						type="password"
 						name="login"
 						placeholder="Password"
 						value={props.passwordValue}
@@ -57,7 +57,6 @@ function Login(props) {
 		</div>
 	);
 
-
 	return (
 		<>
 			<div
@@ -67,7 +66,6 @@ function Login(props) {
 			>
 				{props.loginClicked ? loginForm : <strong>Log In</strong>}{" "}
 			</div>
-
 		</>
 	);
 }

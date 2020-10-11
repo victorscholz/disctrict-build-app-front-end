@@ -18,11 +18,9 @@ function VisitList(props) {
 			onMouseLeave={props.changeHistoryState}
 			className={props.historyClicked ? "visitList" : "sidebarStyle"}
 		>
-			{props.historyClicked ? <strong>View History</strong>: null}
+			{props.historyClicked ? <strong>View History</strong> : null}
 
-			<div>
-				{props.historyClicked ? visitListCards : districtBuildButton}
-			</div>
+			<div>{props.historyClicked ? visitListCards : districtBuildButton}</div>
 		</div>
 	);
 }
