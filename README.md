@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a collaboration between Cody Castro and Victor Scholz
 
 ![Screen Shot 2020-10-20 at 4 36 18 PM](https://user-images.githubusercontent.com/64430496/96641244-6fae1f80-12f2-11eb-8fcb-077d87857aad.png)
 
