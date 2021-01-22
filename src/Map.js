@@ -4,7 +4,7 @@ import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import VisitList from "./VisitList";
-// import Login from "./Login";
+import Login from "./Login";
 
 // const railsUrl = "http://localhost:3000/buildings/";
 const railsUrl = "https://frozen-dusk-67940.herokuapp.com/buildings";
