@@ -236,7 +236,7 @@ class Map extends React.Component {
           deleteBuilding={this.deleteBuilding}
         />
 
-        {/* <Login
+        <Login
           changeLoginState={this.changeLoginState}
           loginClicked={this.state.loginClicked}
           loginValue={this.state.loginValue}
@@ -244,7 +244,7 @@ class Map extends React.Component {
           passwordHandler={this.passwordHandler}
           passwordValue={this.state.passwordValue}
           formReset={this.formReset}
-        /> */}
+        />
       </>
     );
   };
