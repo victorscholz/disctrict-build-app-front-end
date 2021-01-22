@@ -2,7 +2,7 @@ import React from "react";
 
 function Login(props) {
   // const userUrl = "http://localhost:3000/users/";
-  const userUrl = "https://frozen-dusk-67940.herokuapp.com/users";
+  const userUrl = "https://frozen-dusk-67940.herokuapp.com/users/";
 
   const submitHandler = () => {
     let userObj = {
