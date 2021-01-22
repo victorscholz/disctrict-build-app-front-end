@@ -7,7 +7,7 @@ import VisitList from "./VisitList";
 // import Login from "./Login";
 
 // const railsUrl = "http://localhost:3000/buildings/";
-const railsUrl = "https://frozen-dusk-67940.herokuapp.com/";
+const railsUrl = "https://frozen-dusk-67940.herokuapp.com/buildings";
 
 mapboxgl.accessToken =
   "pk.eyJ1Ijoibnljb2R5IiwiYSI6ImNrZmcxZWFuejAzNWEydHIyMmw5eGIxaWwifQ.7p4RHp9R5RXRDe6YyktAnQ";
@@ -99,7 +99,7 @@ class Map extends React.Component {
       map.on("click", "nycody.bx1az61y", (e) => {
         // (e.features[0].properties);
         // fetch("http://localhost:3000/buildings", {
-          fetch("https://frozen-dusk-67940.herokuapp.com/", {
+          fetch("https://frozen-dusk-67940.herokuapp.com/buildings", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -192,7 +192,7 @@ class Map extends React.Component {
 
   deleteBuilding = (buildingObj) => {
     // fetch(`http://localhost:3000/buildings/${buildingObj.id}`, {
-      fetch("https://frozen-dusk-67940.herokuapp.com/", {
+      fetch(`https://frozen-dusk-67940.herokuapp.com/${buildingObj.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
