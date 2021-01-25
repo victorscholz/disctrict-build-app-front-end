@@ -102,7 +102,7 @@ class Map extends React.Component {
         fetch("https://frozen-dusk-67940.herokuapp.com/buildings/", {
           method: "POST",
           headers: {
-            // "Content-Type": "application/json",
+            "Content-Type": "application/json",
             Accept: "application/json",
           },
           body: JSON.stringify({
@@ -195,7 +195,7 @@ class Map extends React.Component {
     fetch(`https://frozen-dusk-67940.herokuapp.com/${buildingObj.id}/`, {
       method: "DELETE",
       headers: {
-        // "Content-Type": "application/json",
+        "Content-Type": "application/json",
         Accept: "application/json",
       },
       body: JSON.stringify({ building: buildingObj }),
