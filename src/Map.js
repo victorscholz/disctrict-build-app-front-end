@@ -99,10 +99,10 @@ class Map extends React.Component {
       map.on("click", "nycody.bx1az61y", (e) => {
         // (e.features[0].properties);
         // fetch("http://localhost:3000/buildings", {
-          fetch("https://frozen-dusk-67940.herokuapp.com/buildings/", {
+        fetch("https://frozen-dusk-67940.herokuapp.com/buildings/", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            // "Content-Type": "application/json",
             Accept: "application/json",
           },
           body: JSON.stringify({
@@ -192,10 +192,10 @@ class Map extends React.Component {
 
   deleteBuilding = (buildingObj) => {
     // fetch(`http://localhost:3000/buildings/${buildingObj.id}`, {
-      fetch(`https://frozen-dusk-67940.herokuapp.com/${buildingObj.id}/`, {
+    fetch(`https://frozen-dusk-67940.herokuapp.com/${buildingObj.id}/`, {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
         Accept: "application/json",
       },
       body: JSON.stringify({ building: buildingObj }),
