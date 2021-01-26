@@ -4,10 +4,10 @@ import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import VisitList from "./VisitList";
-// import Login from "./Login";
+import Login from "./Login";
 
-const railsUrl = "http://localhost:3000/buildings/";
-// const railsUrl = "https://frozen-dusk-67940.herokuapp.com/buildings/";
+// const railsUrl = "http://localhost:3000/buildings/";
+const railsUrl = "https://frozen-dusk-67940.herokuapp.com/buildings/";
 
 mapboxgl.accessToken =
   "pk.eyJ1Ijoibnljb2R5IiwiYSI6ImNrZmcxZWFuejAzNWEydHIyMmw5eGIxaWwifQ.7p4RHp9R5RXRDe6YyktAnQ";
@@ -96,25 +96,39 @@ class Map extends React.Component {
         },
       });
 
-      map.on("click", "nycody.bx1az61y", (e) => {
-        // (e.features[0].properties);
-        fetch("http://localhost:3000/buildings", {
-        // fetch("https://frozen-dusk-67940.herokuapp.com/buildings/", {
+      map.on("click", "nycody.bx1az61y", async (e) => {
+        const configObj = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
+          // body: JSON.stringify({ building: body }),
           body: JSON.stringify({
             building: e.features[0].properties,
           }),
-        })
-        .then((response) => response.json())
+        };
+        // console.log(configObj);
+        // (e.features[0].properties);
+        fetch(
+          railsUrl,
+          configObj
+          // fetch("https://frozen-dusk-67940.herokuapp.com/buildings/", {
+          // method: "POST",
+          // headers: {
+          //   "Content-Type": "application/json",
+          //   Accept: "application/json",
+          // },
+          // body: JSON.stringify({
+          //   building: e.features[0].properties,
+          // })
+        )
+          .then((response) => response.json())
           .then((data) =>
             this.setState({
               visitListArray: [data, ...this.state.visitListArray],
             })
-            );
+          );
       });
 
       // When a click event occurs on a feature in the buildings layer, open a popup at the
@@ -191,8 +205,8 @@ class Map extends React.Component {
   }
 
   deleteBuilding = (buildingObj) => {
-    fetch(`http://localhost:3000/buildings/${buildingObj.id}`, {
-    // fetch(`https://frozen-dusk-67940.herokuapp.com/${buildingObj.id}/`, {
+    // fetch(`http://localhost:3000/buildings/${buildingObj.id}`, {
+    fetch(`https://frozen-dusk-67940.herokuapp.com/${buildingObj.id}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -236,7 +250,7 @@ class Map extends React.Component {
           deleteBuilding={this.deleteBuilding}
         />
 
-        {/* <Login
+        <Login
           changeLoginState={this.changeLoginState}
           loginClicked={this.state.loginClicked}
           loginValue={this.state.loginValue}
@@ -244,7 +258,7 @@ class Map extends React.Component {
           passwordHandler={this.passwordHandler}
           passwordValue={this.state.passwordValue}
           formReset={this.formReset}
-        /> */}
+        />
       </>
     );
   };
