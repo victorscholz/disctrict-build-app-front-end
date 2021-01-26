@@ -206,7 +206,7 @@ class Map extends React.Component {
 
   deleteBuilding = (buildingObj) => {
     // fetch(`http://localhost:3000/buildings/${buildingObj.id}`, {
-    fetch(`https://frozen-dusk-67940.herokuapp.com/${buildingObj.id}/`, {
+    fetch(`https://frozen-dusk-67940.herokuapp.com/buildings/${buildingObj.id}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
