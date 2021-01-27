@@ -139,7 +139,34 @@ class Map extends React.Component {
         new mapboxgl.Popup()
           .setLngLat(e.lngLat)
           .setHTML(
-            "<strong>Building/Landmark Name: </strong><br>" +
+            
+              e.features[0].properties.build_nme === "0" ? // If the landmark has no name print the following
+              "<strong>Landmark Name: </strong><br>" +
+              "No documented name" +
+              "<br><strong>Developer: </strong></br>" +
+              e.features[0].properties.own_devel +
+              "<br><strong>Build Type: </strong></br>" +
+              e.features[0].properties.build_type +
+              "<br><strong>Architect: </strong></br>" +
+              e.features[0].properties.arch_build +
+              "<br><strong>Style: </strong></br>" +
+              e.features[0].properties.style_prim +
+              "<br><strong>Materials: </strong></br>" +
+              e.features[0].properties.mat_prim +
+              " & " +
+              e.features[0].properties.mat_sec +
+              "<br><strong>Build Date: </strong></br>" +
+              e.features[0].properties.date_combo +
+              "<br><strong>Original Use: </strong></br>" +
+              e.features[0].properties.use_orig +
+              "<br><strong>Borough: </strong></br>" +
+              e.features[0].properties.borough +
+              "<br><strong>Historical District: </strong></br>" +
+              e.features[0].properties.hist_dist +
+              "<br><strong>Address: </strong></br>" +
+              e.features[0].properties.des_addres 
+              : // If the building has a name print the following
+              "<strong>Landmark Name: </strong><br>" +
               e.features[0].properties.build_nme +
               "<br><strong>Developer: </strong></br>" +
               e.features[0].properties.own_devel +
