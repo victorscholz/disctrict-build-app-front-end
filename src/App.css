@@ -17,9 +17,9 @@
 	display: inline-block;
 	letter-spacing: 1.5px;
 	position: absolute;
-	top: 50px;
+	top: 63px;
 	left: 25px;
-	background-color: #3b88ab;
+	background-color: #3b88abae;
 	color: #ffffff;
 	z-index: 1 !important;
 	padding: 10px;
