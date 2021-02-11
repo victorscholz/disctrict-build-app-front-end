@@ -31,6 +31,8 @@
 	transition: transform 0.2s; /* Animation */
 }
 
+
+
 .sidebarStyle:hover {
 	transform: scale(
 		1
@@ -81,7 +83,12 @@
 	overflow-x: hidden;
 	overflow-y: auto;
 	text-align: justify;
+
+	transition-property: opacity, left, top, height;
+	transition-duration: .60s
+
 }
+
 
 .visitList:hover {
 	transform: scale(1);
